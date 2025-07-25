@@ -1,0 +1,92 @@
+:root {
+  --bg-light: #f0f0f0;
+  --bg-dark: #121212;
+  --text-light: #000;
+  --text-dark: #fff;
+  --accent: #ff3c3c;
+}
+
+[data-theme="dark"] {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+[data-theme="light"] {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  transition: background 0.3s, color 0.3s;
+}
+
+.login-container, .main-content {
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.login-container.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.login-container.hidden {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+}
+
+.main-content.hidden {
+  display: none;
+}
+
+.main-content.visible {
+  display: block;
+}
+
+input, select, button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+}
+
+button {
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.sensi-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background: #333;
+  color: #fff;
+  max-width: 90%;
+  margin-inline: auto;
+}
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.logo {
+  color: var(--accent);
+  font-weight: bold;
+}

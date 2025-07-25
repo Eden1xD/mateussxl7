@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🔥 Stars Sensi FF</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Tela de Login -->
+  <div id="login" class="login-container show">
+    <h1>🔐 Bem-vindo ao <span class="logo">Stars Sensi FF</span></h1>
+    <input id="nick" placeholder="Digite seu nick Free Fire 🔥" />
+    <button onclick="entrar()">🚀 Entrar</button>
+    <footer>👾 Criado por Mateus LIMA</footer>
+  </div>
+
+  <!-- Conteúdo Principal -->
+  <div id="main" class="main-content hidden">
+    <header>
+      <h2>🎯 Gerador de Sensibilidade</h2>
+      <button onclick="toggleTheme()">🌙/☀️</button>
+    </header>
+
+    <label>📱 Modelo do Celular:</label>
+    <select id="modelo">
+      <option>Samsung</option>
+      <option>iPhone</option>
+      <option>Motorola</option>
+      <option>Xiaomi</option>
+      <option>Realme</option>
+      <option>Outro</option>
+    </select>
+
+    <label>⚙️ DPI (ex: 521):</label>
+    <input type="number" id="dpi" placeholder="Digite sua DPI" max="2000" />
+
+    <button onclick="gerarSensi()">🎮 Gerar Sensibilidade</button>
+
+    <div class="sensi-box hidden" id="resultado">
+      <p>🔧 Geral: <span id="geral">--</span></p>
+      <p>🔴 Ponto Vermelho: <span id="vermelho">--</span></p>
+      <p>🔭 2x: <span id="x2">--</span></p>
+      <p>🎯 4x: <span id="x4">--</span></p>
+      <p>🔫 AWM: <span id="awm">--</span></p>
+      <button onclick="copiarSensi()">📋 Copiar Sensibilidade</button>
+    </div>
+
+    <footer>✨ Desenvolvido por Mateus (Edenn) | Stars Sensi FF 🔥</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
