@@ -1,81 +1,73 @@
-function entrar() {
-  const nick = document.getElementById("nick").value.trim();
-  if (!nick) {
-    alert("Por favor, digite seu nick!");
-    return;
+// Fundo animado 3D
+VANTA.NET({
+  el: "#vanta-bg",
+  mouseControls: true,
+  touchControls: true,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x7e22ce,
+  backgroundColor: 0x000000,
+  points: 15.00,
+  maxDistance: 25.00,
+  spacing: 18.00
+});
+
+// Texto automático
+const messages = [
+  "M22⚽",
+  "Jesus é o caminho",
+  "Bom y novo"
+];
+let msgIndex = 0;
+let charIndex = 0;
+const typeEl = document.getElementById("typewriter");
+
+function typeEffect() {
+  if (charIndex < messages[msgIndex].length) {
+    typeEl.textContent += messages[msgIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeEffect, 80);
+  } else {
+    setTimeout(eraseEffect, 1500);
   }
-
-  document.getElementById("login").classList.remove("show");
-  document.getElementById("login").classList.add("hidden");
-
-  const main = document.getElementById("main");
-  main.classList.remove("hidden");
-  main.classList.add("visible");
-
-  enviarNotificacao(`Bem-vindo, ${nick}! 🔥`);
 }
 
-function gerarSensi() {
-  const dpi = document.getElementById("dpi").value;
-  if (!dpi || dpi < 100 || dpi > 2000) {
-    alert("Digite uma DPI válida entre 100 e 2000.");
-    return;
+function eraseEffect() {
+  if (charIndex > 0) {
+    typeEl.textContent = messages[msgIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseEffect, 50);
+  } else {
+    msgIndex = (msgIndex + 1) % messages.length;
+    setTimeout(typeEffect, 300);
   }
-
-  const geral = Math.floor(Math.random() * 200);
-  const vermelho = Math.floor(Math.random() * 200);
-  const x2 = Math.floor(Math.random() * 200);
-  const x4 = Math.floor(Math.random() * 200);
-  const awm = Math.floor(Math.random() * 200);
-
-  document.getElementById("geral").textContent = geral;
-  document.getElementById("vermelho").textContent = vermelho;
-  document.getElementById("x2").textContent = x2;
-  document.getElementById("x4").textContent = x4;
-  document.getElementById("awm").textContent = awm;
-
-  document.getElementById("resultado").classList.remove("hidden");
-  enviarNotificacao("Sensibilidade gerada com sucesso! 🎯");
 }
+typeEffect();
 
-function copiarSensi() {
-  const geral = document.getElementById("geral").textContent;
-  const vermelho = document.getElementById("vermelho").textContent;
-  const x2 = document.getElementById("x2").textContent;
-  const x4 = document.getElementById("x4").textContent;
-  const awm = document.getElementById("awm").textContent;
+// Avatar automático
+let current = 0;
+const avatars = document.querySelectorAll(".avatar");
+const total = avatars.length;
 
-  const texto = `🎮 Stars Sensi FF:
-Geral: ${geral}
-Ponto Vermelho: ${vermelho}
-2x: ${x2}
-4x: ${x4}
-AWM: ${awm}`;
-
-  navigator.clipboard.writeText(texto).then(() => {
-    alert("📋 Sensibilidade copiada!");
+function showAvatar(index) {
+  avatars.forEach((avatar, i) => {
+    avatar.classList.toggle("active", i === index);
   });
 }
 
-function toggleTheme() {
-  const html = document.documentElement;
-  const atual = html.getAttribute("data-theme");
-  html.setAttribute("data-theme", atual === "dark" ? "light" : "dark");
-}
-
-function enviarNotificacao(msg) {
-  if (!("Notification" in window)) return;
-  if (Notification.permission === "granted") {
-    new Notification("Stars Sensi FF", { body: msg });
-  } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then((perm) => {
-      if (perm === "granted") {
-        new Notification("Stars Sensi FF", { body: msg });
-      }
-    });
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  Notification.requestPermission();
+document.querySelector(".avatar-prev").addEventListener("click", () => {
+  current = (current - 1 + total) % total;
+  showAvatar(current);
 });
+
+document.querySelector(".avatar-next").addEventListener("click", () => {
+  current = (current + 1) % total;
+  showAvatar(current);
+});
+
+setInterval(() => {
+  current = (current + 1) % total;
+  showAvatar(current);
+}, 6000);
