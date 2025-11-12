@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
 
 * {
   margin: 0;
@@ -8,45 +8,53 @@
 
 body {
   font-family: 'Orbitron', sans-serif;
-  overflow-x: hidden;
+  overflow: hidden;
   background: #000;
   color: #fff;
   height: 100vh;
 }
 
-#vanta-bg {
+/* 🎆 Fundo de fumaça */
+#smoke {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0; /* Fica por trás de tudo */
 }
 
+/* 🔥 Cabeçalho */
 header {
   text-align: center;
-  margin-top: 80px;
+  margin-top: 70px;
+  position: relative;
+  z-index: 3;
 }
 
 .neon-title {
   font-size: 3em;
   color: #8b5cf6;
-  text-shadow: 0 0 20px #8b5cf6, 0 0 40px #6d28d9;
-  animation: flicker 2s infinite alternate;
+  text-shadow:
+    0 0 15px #8b5cf6,
+    0 0 30px #6d28d9,
+    0 0 60px #4f46e5;
 }
 
 #typewriter {
   margin-top: 10px;
   font-size: 1.2em;
-  color: #93c5fd;
+  color: #a78bfa;
+  text-shadow: 0 0 15px #7c3aed;
 }
 
 /* 🌀 Avatar Carousel */
 .avatar-carousel {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   margin: 60px auto;
+  z-index: 3;
 }
 
 .avatar-container {
@@ -55,7 +63,11 @@ header {
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 25px #8b5cf6, 0 0 50px #4f46e5;
+  border: 3px solid rgba(167, 139, 250, 0.5);
+  box-shadow:
+    0 0 40px rgba(139, 92, 246, 0.6),
+    inset 0 0 25px rgba(255, 255, 255, 0.15);
+  background: rgba(10, 10, 10, 0.8);
 }
 
 .avatar {
@@ -64,8 +76,9 @@ header {
   height: 100%;
   border-radius: 50%;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
   object-fit: cover;
+  object-position: center; /* 💡 centraliza perfeitamente */
+  transition: opacity 1s ease-in-out;
 }
 
 .avatar.active {
@@ -76,37 +89,44 @@ header {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(139, 92, 246, 0.3);
-  border: none;
+  background: rgba(139, 92, 246, 0.25);
+  border: 1px solid rgba(167, 139, 250, 0.3);
   color: #fff;
-  font-size: 2em;
+  font-size: 1.8em;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   cursor: pointer;
   transition: 0.3s;
+  backdrop-filter: blur(8px);
+  z-index: 5;
 }
 
 .avatar-prev:hover, .avatar-next:hover {
   background: rgba(139, 92, 246, 0.6);
-  box-shadow: 0 0 10px #a78bfa;
+  box-shadow: 0 0 15px #a78bfa;
 }
 
-.avatar-prev { left: -60px; }
-.avatar-next { right: -60px; }
+.avatar-prev { left: -55px; }
+.avatar-next { right: -55px; }
 
+/* 🪩 Painel */
 .panel {
-  background: rgba(25, 25, 35, 0.6);
+  background: rgba(20, 20, 30, 0.7);
   backdrop-filter: blur(15px);
-  border-radius: 20px;
+  border-radius: 25px;
   padding: 30px;
   width: 80%;
   max-width: 600px;
   margin: 60px auto;
   text-align: center;
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  position: relative;
+  z-index: 3;
 }
 
+/* 🌐 Ícones sociais */
 .social-icons {
   display: flex;
   justify-content: center;
@@ -114,20 +134,23 @@ header {
 }
 
 .social-icons img {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   filter: drop-shadow(0 0 10px #8b5cf6);
-  transition: transform 0.3s, filter 0.3s;
+  transition: 0.3s;
 }
 
 .social-icons img:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 20px #a78bfa);
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 30px #a78bfa);
 }
 
+/* ⚙️ Rodapé */
 footer {
   text-align: center;
   margin-top: 50px;
-  color: #9ca3af;
+  color: #888;
   font-size: 0.9em;
+  position: relative;
+  z-index: 3;
 }
